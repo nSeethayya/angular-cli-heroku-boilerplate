@@ -14,7 +14,7 @@ export class CarService {
   constructor(private http:HttpClient) { }
 
   getAll() : Observable<any> {
-    return this.http.get(COOL_CARS_API);
+    return this.http.get(this.COOL_CARS_API);
   }
 
   get(id : string) {
