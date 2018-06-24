@@ -45,7 +45,7 @@ const appRoutes : Routes = [
 
 const config = {
   issuer: 'https://dev-230817.oktapreview.com/oauth2/default',
-  redirectUri: 'https://sn-heroku-spring-boot-boiler.herokuapp.com/implicit/callback',
+  redirectUri: 'https://sn-angular-cli-heroku-boiler.herokuapp.com/implicit/callback',
   clientId: '0oafk36oh3axEI5920h7'
 };
 
