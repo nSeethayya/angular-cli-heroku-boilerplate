@@ -45,7 +45,7 @@ const appRoutes : Routes = [
 
 const config = {
   issuer: 'https://dev-230817.oktapreview.com/oauth2/default',
-  redirectUri: 'https://sn-angular-cli-heroku-boiler.herokuapp.com/implicit/callback',
+  redirectUri: 'https://sn-angular-cli-heroku-boiler.herokuapp.com/%2523/implicit/callback',
   clientId: '0oafk36oh3axEI5920h7'
 };
 
@@ -59,7 +59,7 @@ const config = {
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, { useHash: true }),
     HttpModule,
     HttpClientModule,
     MatButtonModule,
