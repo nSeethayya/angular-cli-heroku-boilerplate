@@ -38,7 +38,7 @@ const appRoutes : Routes = [
     component: CarEditComponent
   },
   {
-    path: 'implicit/callback',
+    path: 'implic`it/callback',
     component: OktaCallbackComponent
   }
 ];
@@ -59,7 +59,7 @@ const config = {
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes, { useHash: true }),
+    RouterModule.forRoot(appRoutes),
     HttpModule,
     HttpClientModule,
     MatButtonModule,
