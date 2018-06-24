@@ -38,7 +38,7 @@ const appRoutes : Routes = [
     component: CarEditComponent
   },
   {
-    path: 'implic`it/callback',
+    path: 'implicit/callback',
     component: OktaCallbackComponent
   }
 ];
