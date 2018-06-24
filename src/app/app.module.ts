@@ -11,10 +11,19 @@ import { CarListComponent } from './car-list/car-list.component';
 import {MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule} from '@angular/material';
 import { CarEditComponent } from './car-edit/car-edit.component';
 import {RouterModule, Routes} from '@angular/router';
+import { OktaCallbackComponent, OktaAuthModule } from '@okta/okta-angular';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './shared/okta/auth.interceptor';
+import { HomeComponent } from './home/home.component';
+
 
 const appRoutes : Routes = [
   {
-    path: '', redirectTo: '/car-list', pathMatch: 'full'
+    path: '', redirectTo: '/home', pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    component: HomeComponent
   },
   {
     path: 'car-list',
@@ -27,28 +36,41 @@ const appRoutes : Routes = [
   {
     path: 'car-edit/:id',
     component: CarEditComponent
+  },
+  {
+    path: 'implicit/callback',
+    component: OktaCallbackComponent
   }
 ];
+
+const config = {
+  issuer: 'https://dev-230817.oktapreview.com/oauth2/default',
+  redirectUri: 'https://sn-heroku-spring-boot-boiler.herokuapp.com/implicit/callback',
+  clientId: '0oafk36oh3axEI5920h7'
+};
 
 @NgModule({
   declarations: [
     AppComponent,
     CarListComponent,
-    CarEditComponent
+    CarEditComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes, { useHash: true }),
+    RouterModule.forRoot(appRoutes),
     HttpModule,
     HttpClientModule,
     MatButtonModule,
     MatCardModule,
     MatInputModule,
     MatListModule,
-    MatToolbarModule
+    MatToolbarModule,
+    OktaAuthModule.initAuth(config)
   ],
-  providers: [CarService, GiphyService],
+  providers: [CarService, GiphyService,
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
