@@ -18,8 +18,12 @@ import { HomeComponent } from './home/home.component';
 
 
 const appRoutes : Routes = [
+  // {
+  //   path: '', redirectTo: 'home', pathMatch: 'full'
+  // },
   {
-    path: '', redirectTo: '/home', pathMatch: 'full'
+    path: '', 
+    component: HomeComponent
   },
   {
     path: 'home',
@@ -38,16 +42,14 @@ const appRoutes : Routes = [
     component: CarEditComponent
   },
   {
-    path: 'callback',
-    component: OktaCallbackComponent,
-    runGuardsAndResolvers: 'always'
- 
+    path: 'implicit/callback',
+    component: OktaCallbackComponent 
   }
 ];
 
 const config = {
   issuer: 'https://dev-230817.oktapreview.com/oauth2/default',
-  redirectUri: 'https://sn-angular-cli-heroku-boiler.herokuapp.com/callback',
+  redirectUri: 'https://sn-angular-cli-heroku-boiler.herokuapp.com/implicit/callback',
   clientId: '0oafk36oh3axEI5920h7'
 };
 
@@ -61,7 +63,7 @@ const config = {
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes, {onSameUrlNavigation: 'reload'}),
+    RouterModule.forRoot(appRoutes),
     HttpModule,
     HttpClientModule,
     MatButtonModule,
@@ -71,7 +73,6 @@ const config = {
     MatToolbarModule,
     OktaAuthModule.initAuth(config)
   ],
-  exports: [RouterModule],
   providers: [CarService, GiphyService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
