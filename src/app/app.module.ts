@@ -59,7 +59,7 @@ const config = {
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, {useHash: true}),
     HttpModule,
     HttpClientModule,
     MatButtonModule,
