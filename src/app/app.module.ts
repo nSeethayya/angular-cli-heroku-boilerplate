@@ -59,7 +59,7 @@ const config = {
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, {onSameUrlNavigation: 'reload'}),
     HttpModule,
     HttpClientModule,
     MatButtonModule,
@@ -69,6 +69,7 @@ const config = {
     MatToolbarModule,
     OktaAuthModule.initAuth(config)
   ],
+  exports: [RouterModule],
   providers: [CarService, GiphyService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
