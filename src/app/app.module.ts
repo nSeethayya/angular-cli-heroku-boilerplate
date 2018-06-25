@@ -39,7 +39,9 @@ const appRoutes : Routes = [
   },
   {
     path: 'callback',
-    component: OktaCallbackComponent
+    component: OktaCallbackComponent,
+    runGuardsAndResolvers: 'always'
+ 
   }
 ];
 
