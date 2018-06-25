@@ -21,7 +21,11 @@ const appRoutes : Routes = [
   // {
   //   path: '', redirectTo: 'home', pathMatch: 'full'
   // },
-    {
+  {
+    path: '', 
+    component: HomeComponent
+  },
+  {
     path: 'home',
     component: HomeComponent
   },
@@ -38,14 +42,14 @@ const appRoutes : Routes = [
     component: CarEditComponent
   },
   {
-    path: '',
+    path: 'implicit/callback',
     component: OktaCallbackComponent 
   }
 ];
 
 const config = {
   issuer: 'https://dev-230817.oktapreview.com/oauth2/default',
-  redirectUri: 'https://sn-angular-cli-heroku-boiler.herokuapp.com',
+  redirectUri: 'https://sn-angular-cli-heroku-boiler.herokuapp.com/implicit/callback',
   clientId: '0oafk36oh3axEI5920h7'
 };
 
@@ -59,7 +63,7 @@ const config = {
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes, {useHash: true}),
+    RouterModule.forRoot(appRoutes),
     HttpModule,
     HttpClientModule,
     MatButtonModule,
